@@ -419,6 +419,23 @@ public final class Bootstrap {
      */
     public static void main(String args[]) {
 
+    	/**
+    	 *  myOpinion 参数样例 /usr/java/jdk1.6.0_27/bin/java 
+    	 *  -server -Xms2000m -Xmx2000m -XX:MaxPermSize=512m 
+    	 *  -Dorg.jboss.resolver.warning=true 
+    	 *  -Dsun.rmi.dgc.client.gcInterval=3600000 
+    	 *  -Dsun.rmi.dgc.server.gcInterval=3600000 
+    	 *  -Xrunjdwp:transport=dt_socket,address=8787,
+    	 *  server=y,
+    	 *  suspend=n 
+    	 *  -Djava.net.preferIPv4Stack=true 
+    	 *  -Dprogram.name=run.sh 
+    	 *  -Dlogging.configuration=file:/usr/local/jboss/jboss-6.1.0.Final/bin/logging.properties 
+    	 *  -Djava.library.path=/usr/local/jboss/jboss-6.1.0.Final/bin/native/lib64 
+    	 *  -Djava.endorsed.dirs=/usr/local/jboss/jboss-6.1.0.Final/lib/endorsed 
+    	 *  -classpath /usr/local/jboss/jboss-6.1.0.Final/bin/run.jar:/usr/java/jdk1.6.0_27/lib/tools.jar 
+    	 *  org.jboss.Main -b 192.168.10.84
+    	 */
         if (daemon == null) {
             // Don't set daemon until init() has completed
             Bootstrap bootstrap = new Bootstrap();
