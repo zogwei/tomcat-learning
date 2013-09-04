@@ -1,0 +1,9 @@
+127.0.0.1 - - [28/Aug/2013:14:22:34 +0800] "GET /examples/ HTTP/1.1" 200 1209
+127.0.0.1 - - [28/Aug/2013:14:22:34 +0800] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [28/Aug/2013:14:35:26 +0800] "GET /examples/ HTTP/1.1" 304 -
+127.0.0.1 - - [28/Aug/2013:14:35:28 +0800] "GET /examples/jsp HTTP/1.1" 302 -
+127.0.0.1 - - [28/Aug/2013:14:35:28 +0800] "GET /examples/jsp/ HTTP/1.1" 200 19573
+127.0.0.1 - - [28/Aug/2013:14:35:28 +0800] "GET /examples/jsp/images/execute.gif HTTP/1.1" 200 1242
+127.0.0.1 - - [28/Aug/2013:14:35:28 +0800] "GET /examples/jsp/images/code.gif HTTP/1.1" 200 292
+127.0.0.1 - - [28/Aug/2013:14:35:28 +0800] "GET /examples/jsp/images/return.gif HTTP/1.1" 200 1231
+127.0.0.1 - - [28/Aug/2013:14:35:31 +0800] "GET /examples/jsp/jsp2/el/basic-arithmetic.jsp HTTP/1.1" 200 1582

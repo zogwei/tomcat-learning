@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" output="target/classes" path="trunk/java"/>
-	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="trunk/test"/>
-	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="src" path="trunk/java"/>
+	<classpathentry kind="src" path="trunk/test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/ant-1.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/ant-launcher-1.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/ecj-3.7.2.jar"/>
+	<classpathentry kind="lib" path="lib/jaxrpc-api-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="lib/wsdl4j-1.6.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
