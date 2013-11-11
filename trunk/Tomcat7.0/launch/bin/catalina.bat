@@ -96,6 +96,7 @@ rem
 rem $Id: catalina.bat 1202062 2011-11-15 06:50:02Z mturk $
 rem ---------------------------------------------------------------------------
 
+
 rem Suppress Terminate batch job on CTRL+C
 if not ""%1"" == ""run"" goto mainEntry
 if ""%TEMP%"" == """" goto mainEntry

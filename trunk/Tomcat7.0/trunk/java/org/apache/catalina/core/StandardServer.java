@@ -722,6 +722,9 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
     protected void startInternal() throws LifecycleException {
 
         fireLifecycleEvent(CONFIGURE_START_EVENT, null);
+        /**
+         *  server.xml定义了一个server的监听器，
+         */
         setState(LifecycleState.STARTING);
 
         globalNamingResources.start();

@@ -59,6 +59,9 @@ public class Http11Protocol extends AbstractHttp11JsseProtocol {
 
 
     public Http11Protocol() {
+    	/**
+    	 * myOpinion 主要参与者： endpoint 处理连接，chandler处理，Http11Processor
+    	 */
         endpoint = new JIoEndpoint();
         cHandler = new Http11ConnectionHandler(this);
         ((JIoEndpoint) endpoint).setHandler(cHandler);
