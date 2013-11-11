@@ -522,6 +522,9 @@ public class JIoEndpoint extends AbstractEndpoint {
             if (!running) {
                 return false;
             }
+            /**
+             * myOpinion 异步处理收到的socket连接，一般是一个http请求
+             */
             getExecutor().execute(new SocketProcessor(wrapper));
         } catch (RejectedExecutionException x) {
             log.warn("Socket processing request was rejected for:"+socket,x);

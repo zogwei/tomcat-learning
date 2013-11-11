@@ -17,6 +17,7 @@
 package org.apache.catalina.connector;
 
 import java.net.InetAddress;
+import java.net.Socket;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -961,6 +962,10 @@ public class Connector extends LifecycleMBeanBase  {
 
         super.initInternal();
 
+        /**
+    	 * myOpinion 默认情况下 protocolHandler指org.apache.coyote.http11.Http11Protocol,可以通过server.xm配置修改
+    	 * myDoubt CoyoteAdapter 作用？AbstractProcessor 最终处理socket
+    	 */
         // Initialize adapter
         adapter = new CoyoteAdapter(this);
         protocolHandler.setAdapter(adapter);
@@ -977,6 +982,9 @@ public class Connector extends LifecycleMBeanBase  {
                             getProtocolHandlerClassName()));
         }
 
+        /**
+         * myOpinion init()默认只是给Http11Protocol中的endpoint. bind() 中创建了serverSocket
+         */
         try {
             protocolHandler.init();
         } catch (Exception e) {
@@ -1006,6 +1014,17 @@ public class Connector extends LifecycleMBeanBase  {
 
         setState(LifecycleState.STARTING);
 
+        /**
+         * myOpinion 主要的方法是JIoEndpoint 的startInternal()
+         *           1、初始化用于处理每个http请求产生的socket的线程池，
+         *           2、初始化轮询serversocket用的线程Acceptor，并启动
+         *           3、开启时间同步线程
+         *           
+         *           Http11Protocol包含
+         *            Acceptor轮询到的http请求socket包装成SocketProcessor交给线程池处理(JIoEndpoint.processSocket(Socket socket))
+         *          Http11Protocol包含JIoEndpoint和Http11ConnectionHandler, JIoEndpoint拿到http请求socket,Http11ConnectionHandler(在Http11Protocol中) 会接手处理socket
+         *          
+         */
         try {
             protocolHandler.start();
         } catch (Exception e) {

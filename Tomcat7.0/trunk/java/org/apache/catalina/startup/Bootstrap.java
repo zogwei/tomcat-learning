@@ -85,7 +85,14 @@ public final class Bootstrap {
 
     // -------------------------------------------------------- Private Methods
 
-
+    /**
+     * myOpinion 1、commonLoader  catalinaLoader  sharedLoader 都是URLClassLoader的子类，没有覆写findclass 和 loadclass方法
+     * 			 2、他们的类搜索路径由 catalina.properties 文件中的common.loader server.loader shared.loader指定
+     *           3、commonLoader 主要是tomcat lib下的文件和jar文件：${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar
+     *           4、catalinaLoader  sharedLoader 在没有设置搜索路径的情况下会等同 commonLoader
+     *           5、三个classloader 可以指定由哪个classloader去加载什么类，这样可以控制不同类的范围。
+     *           6、catalinaDaemon使用反射实现，也有上面的因素存在
+     */
     private void initClassLoaders() {
         try {
             commonLoader = createClassLoader("common", null);
@@ -215,6 +222,10 @@ public final class Bootstrap {
 
     /**
      * Initialize daemon.
+     * myOpinion 初始化三个class loader，
+     *           反射的方式生成catalinaDaemon，调用其setParentClassLoader方法，将sharedLoader为参数
+     * myOpinion catalinaDaemon是整个tomcat的入口,bootstrap通过反射实现catalina.javale类，核心方法load,start,stop等都是通过damon反射的方式调用
+     * myDoubt 这种反射方式调用的原因？          
      */
     public void init()
         throws Exception
@@ -420,7 +431,8 @@ public final class Bootstrap {
     public static void main(String args[]) {
 
     	/**
-    	 *  myOpinion 参数样例 /usr/java/jdk1.6.0_27/bin/java 
+    	 *  myOpinion 参数样例 ,不准确，这是jboss的样例
+    	 *  /usr/java/jdk1.6.0_27/bin/java 
     	 *  -server -Xms2000m -Xmx2000m -XX:MaxPermSize=512m 
     	 *  -Dorg.jboss.resolver.warning=true 
     	 *  -Dsun.rmi.dgc.client.gcInterval=3600000 

@@ -531,6 +531,14 @@ public class Catalina {
 
     /**
      * Start a new server instance.
+     * myOpinion **通过digester解析server.xml 生成各个组件，并组装成对象树
+     * myOpinion **init start stop都是骨架模式，
+     *              调用 getServer().init() 的方法启动了连锁反应，初始化对象树
+     *              各个组件(StandardServer,StandardService,StandardEngine,StandardHost,StandardContext)
+     *              都实现了LifecycleBase接口，包括init(),start,stop等生命周期方法，
+     *              这些生命周期方法调用抽象方法initInternal，startInternal，stopInternal等，
+     *              这些抽象方法在各个组件中覆写，实现具体的 init，start，stop功能
+     *              
      */
     public void load() {
 
@@ -604,6 +612,9 @@ public class Catalina {
             return;
         }
 
+        /**
+         * myOpinion 各个组件对象树生成,完成后 server对象树就建立了
+         */
         try {
             inputSource.setByteStream(inputStream);
             digester.push(this);
@@ -628,6 +639,11 @@ public class Catalina {
         // Stream redirection
         initStreams();
 
+        /**
+         * myOpinion **getServer().init()初始化的入口方法
+         * 
+         * 
+         */
         // Start the new server
         try {
             getServer().init();
