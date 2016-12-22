@@ -239,6 +239,7 @@ public final class Bootstrap {
 
         Thread.currentThread().setContextClassLoader(catalinaLoader);
 
+        //TODO why先加载这些类
         SecurityClassLoad.securityClassLoad(catalinaLoader);
 
         // Load our startup class and call its process() method
